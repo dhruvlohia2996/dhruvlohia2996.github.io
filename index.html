@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhruv | Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color:white;
+}
+
+/* Navbar */
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 50px;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+nav h2{
+    color:#38bdf8;
+}
+
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* Hero */
+.hero{
+    text-align:center;
+    padding:120px 20px;
+}
+
+.hero h1{
+    font-size:45px;
+}
+
+.hero span{
+    color:#38bdf8;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:18px;
+    color:#cbd5f5;
+}
+
+/* Section */
+section{
+    padding:60px 50px;
+}
+
+h2{
+    color:#38bdf8;
+    margin-bottom:20px;
+}
+
+/* Cards */
+.card{
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    backdrop-filter: blur(10px);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(56,189,248,0.3);
+}
+
+/* Buttons */
+.btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    background:#38bdf8;
+    color:black;
+    border-radius:5px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:20px;
+    background:#020617;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+    <h2>Dhruv</h2>
+    <div>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>Hi, I'm <span>Dhruv</span> 👋</h1>
+    <p>BCA (AI & DS) Student | Data Science | Python Developer</p>
+</div>
+
+<!-- About -->
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        Motivated BCA student at KR Mangalam University with strong interest in Data Science,
+        analytics, and software development. Hands-on experience with Python, data analysis,
+        and real-world projects.
+    </p>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="card">
+        <h3>🚀 Traffic Prediction Engine</h3>
+        <p>
+            Predicts traffic density using time-based analysis with route simulation and AQI display.
+            Built using Python and Flask.
+        </p>
+        <a class="btn" href="https://traffic-prediction-engine-2-1.onrender.com" target="_blank">
+            Live Project
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>🚗 Automatic Number Plate Recognition</h3>
+        <p>
+            Detects vehicle number plates using OpenCV and Tesseract OCR with Flask integration.
+        </p>
+    </div>
+
+</section>
+
+<!-- Skills -->
+<section id="skills">
+    <h2>Skills</h2>
+
+    <div class="card">
+        <p><b>Languages:</b> C, C++, Python, Java</p>
+        <p><b>Web:</b> HTML, CSS, JavaScript</p>
+        <p><b>Database:</b> MySQL</p>
+        <p><b>Libraries:</b> Flask, OpenCV, Pandas, NumPy</p>
+        <p><b>Tools:</b> Git, GitHub, VS Code, Excel</p>
+    </div>
+
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact</h2>
+
+    <div class="card">
+        <p>Email: dhruvlohia2996@gmail.com</p>
+        <p>Phone: 9311592996</p>
+        <p>Location: Gurugram, Haryana</p>
+
+        <!-- IMPORTANT: yaha apne links daal -->
+        <a class="btn" href="#">LinkedIn</a>
+        <a class="btn" href="#">GitHub</a>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Dhruv | Portfolio</p>
+</footer>
+
+</body>
+</html>
