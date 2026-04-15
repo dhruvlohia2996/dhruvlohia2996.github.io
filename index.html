@@ -1,204 +1,436 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dhruv | Portfolio</title>
-
+<title>Dhruv Lohia — Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121a;
+    --bg3: #1a1a26;
+    --accent: #7c6af7;
+    --accent2: #4ecdc4;
+    --text: #f0eff8;
+    --muted: #8885a8;
+    --border: rgba(124,106,247,0.15);
+    --card: rgba(255,255,255,0.03);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-body{
-    background: linear-gradient(135deg, #0f172a, #020617);
-    color:white;
-}
+  /* --- NOISE OVERLAY --- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
 
-/* Navbar */
-nav{
-    display:flex;
-    justify-content:space-between;
-    padding:20px 50px;
-    background:rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-}
+  /* --- NAV --- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-nav h2{
-    color:#38bdf8;
-}
+  /* --- HERO --- */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,106,247,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(124,106,247,0.3);
+    border-radius: 999px;
+    display: inline-block;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #a78bfa);
+    color: #fff;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,106,247,0.35); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-nav a{
-    color:white;
-    margin-left:20px;
-    text-decoration:none;
-    transition:0.3s;
-}
+  /* --- SECTIONS --- */
+  section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; position: relative; }
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .sec-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+  .divider { width: 100%; height: 1px; background: var(--border); margin: 0 auto; }
 
-nav a:hover{
-    color:#38bdf8;
-}
+  /* --- SKILLS --- */
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill {
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    transition: all 0.2s;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .skill:hover { border-color: var(--accent); color: var(--accent); background: rgba(124,106,247,0.07); }
+  .skill.hot { border-color: rgba(78,205,196,0.3); color: var(--accent2); background: rgba(78,205,196,0.06); }
 
-/* Hero */
-.hero{
-    text-align:center;
-    padding:120px 20px;
-}
+  /* --- PROJECTS --- */
+  .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: rgba(124,106,247,0.4); transform: translateY(-3px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-card .live-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(78,205,196,0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(78,205,196,0.25);
+    margin-bottom: 0.9rem;
+  }
+  .project-card h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .project-card p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .ptag {
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    padding: 0.2rem 0.7rem;
+    border-radius: 6px;
+    background: rgba(124,106,247,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(124,106,247,0.2);
+  }
+  .project-card a { font-size: 0.85rem; color: var(--accent); text-decoration: none; }
+  .project-card a:hover { text-decoration: underline; }
 
-.hero h1{
-    font-size:45px;
-}
+  /* --- EXPERIENCE --- */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 1.5rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); padding-top: 4px; line-height: 1.5; }
+  .exp-content h3 { font-size: 1rem; font-weight: 500; margin-bottom: 2px; }
+  .exp-content .role { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.4rem; font-family: 'DM Mono', monospace; }
+  .exp-content p { font-size: 0.88rem; color: var(--muted); }
 
-.hero span{
-    color:#38bdf8;
-}
+  /* --- CERTS --- */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(124,106,247,0.4); }
+  .cert-issuer { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--accent2); letter-spacing: 0.08em; margin-bottom: 4px; }
+  .cert-name { font-size: 0.85rem; color: var(--text); line-height: 1.4; }
 
-.hero p{
-    margin-top:15px;
-    font-size:18px;
-    color:#cbd5f5;
-}
+  /* --- CONTACT --- */
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .contact-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0.7rem 1.3rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+  }
+  .contact-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(124,106,247,0.07); }
+  .contact-chip .icon { font-size: 14px; }
 
-/* Section */
-section{
-    padding:60px 50px;
-}
+  /* --- FOOTER --- */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
 
-h2{
-    color:#38bdf8;
-    margin-bottom:20px;
-}
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-/* Cards */
-.card{
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
-    backdrop-filter: blur(10px);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 20px rgba(56,189,248,0.3);
-}
-
-/* Buttons */
-.btn{
-    display:inline-block;
-    margin-top:10px;
-    padding:10px 20px;
-    background:#38bdf8;
-    color:black;
-    border-radius:5px;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:white;
-}
-
-/* Footer */
-footer{
-    text-align:center;
-    padding:20px;
-    background:#020617;
-}
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
 </style>
-
 </head>
-
 <body>
 
-<!-- Navbar -->
 <nav>
-    <h2>Dhruv</h2>
-    <div>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </div>
+  <span class="nav-logo">DL</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
-<!-- Hero -->
+<!-- HERO -->
 <div class="hero">
-    <h1>Hi, I'm <span>Dhruv</span> 👋</h1>
-    <p>BCA (AI & DS) Student | Data Science | Python Developer</p>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">Data Scientist &amp; ML Developer</div>
+  <h1>Dhruv<br><span>Lohia</span></h1>
+  <p class="hero-bio">BCA student at KR Mangalam University. Building real-world ML applications — from traffic prediction engines to computer vision systems.</p>
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="https://traffic-prediction-engine-2-1.onrender.com/" target="_blank">Live Project</a>
+    <a class="btn btn-outline" href="mailto:dhruvlohia2996@gmail.com">Get in touch</a>
+  </div>
 </div>
 
-<!-- About -->
-<section id="about">
-    <h2>About Me</h2>
-    <p>
-        Motivated BCA student at KR Mangalam University with strong interest in Data Science,
-        analytics, and software development. Hands-on experience with Python, data analysis,
-        and real-world projects.
-    </p>
-</section>
+<div class="divider"></div>
 
-<!-- Projects -->
-<section id="projects">
-    <h2>Projects</h2>
-
-    <div class="card">
-        <h3>🚀 Traffic Prediction Engine</h3>
-        <p>
-            Predicts traffic density using time-based analysis with route simulation and AQI display.
-            Built using Python and Flask.
-        </p>
-        <a class="btn" href="https://traffic-prediction-engine-2-1.onrender.com" target="_blank">
-            Live Project
-        </a>
-    </div>
-
-    <div class="card">
-        <h3>🚗 Automatic Number Plate Recognition</h3>
-        <p>
-            Detects vehicle number plates using OpenCV and Tesseract OCR with Flask integration.
-        </p>
-    </div>
-
-</section>
-
-<!-- Skills -->
+<!-- SKILLS -->
 <section id="skills">
-    <h2>Skills</h2>
-
-    <div class="card">
-        <p><b>Languages:</b> C, C++, Python, Java</p>
-        <p><b>Web:</b> HTML, CSS, JavaScript</p>
-        <p><b>Database:</b> MySQL</p>
-        <p><b>Libraries:</b> Flask, OpenCV, Pandas, NumPy</p>
-        <p><b>Tools:</b> Git, GitHub, VS Code, Excel</p>
-    </div>
-
+  <div class="sec-label">// what I work with</div>
+  <div class="sec-title">Skills</div>
+  <div class="skills-wrap">
+    <span class="skill hot">Python</span>
+    <span class="skill hot">Machine Learning</span>
+    <span class="skill hot">Pandas</span>
+    <span class="skill hot">NumPy</span>
+    <span class="skill">EDA</span>
+    <span class="skill">Data Visualization</span>
+    <span class="skill">Flask</span>
+    <span class="skill">OpenCV</span>
+    <span class="skill">Tesseract OCR</span>
+    <span class="skill">MySQL</span>
+    <span class="skill">HTML / CSS / JS</span>
+    <span class="skill">Git &amp; GitHub</span>
+    <span class="skill">MS Excel</span>
+    <span class="skill">C / C++</span>
+    <span class="skill">OOP</span>
+    <span class="skill">DBMS</span>
+  </div>
 </section>
 
-<!-- Contact -->
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-label">// things I built</div>
+  <div class="sec-title">Projects</div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="live-badge">● LIVE</div>
+      <h3>Traffic Prediction Engine</h3>
+      <p>An ML-powered web app that predicts traffic patterns using multiple machine learning algorithms. Fully deployed and accessible online — built end-to-end from data to deployment.</p>
+      <div class="project-tags">
+        <span class="ptag">Machine Learning</span>
+        <span class="ptag">Python</span>
+        <span class="ptag">Multiple Algorithms</span>
+        <span class="ptag">Deployed on Render</span>
+      </div>
+      <a href="https://traffic-prediction-engine-2-1.onrender.com/" target="_blank">View live → traffic-prediction-engine-2-1.onrender.com</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Automatic Number Plate Recognition System</h3>
+      <p>Flask-based web application using OpenCV and Tesseract OCR for real-time vehicle number plate detection and logging. Demonstrates applied computer vision skills.</p>
+      <div class="project-tags">
+        <span class="ptag">Flask</span>
+        <span class="ptag">OpenCV</span>
+        <span class="ptag">Tesseract OCR</span>
+        <span class="ptag">Computer Vision</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label">// where I've worked</div>
+  <div class="sec-title">Experience</div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-date">Jun 2025<br>Jul 2025</div>
+      <div class="exp-content">
+        <h3>Tare Zameen Foundation</h3>
+        <div class="role">Data Analyst Intern</div>
+        <p>Data cleaning, reporting, and visualization using Excel and Python. Tracked metrics and built reports for social impact initiatives.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jun 2024<br>Jul 2024</div>
+      <div class="exp-content">
+        <h3>Interns Veda</h3>
+        <div class="role">Junior Data Scientist</div>
+        <p>Performed data preprocessing and exploratory data analysis using Python. Collaborated on analytics workflows and insight generation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section>
+  <div class="sec-label">// credentials</div>
+  <div class="sec-title">Certifications</div>
+  <div class="cert-grid">
+    <div class="cert-card"><div class="cert-issuer">IBM</div><div class="cert-name">Big Data Engineer — Career Education Program</div></div>
+    <div class="cert-card"><div class="cert-issuer">IBM Cognitive Class</div><div class="cert-name">Data Analysis with Python</div></div>
+    <div class="cert-card"><div class="cert-issuer">Samatrix</div><div class="cert-name">Foundation to AI, Data Science & Analytics</div></div>
+    <div class="cert-card"><div class="cert-issuer">Interns Veda</div><div class="cert-name">Junior Data Scientist Internship</div></div>
+    <div class="cert-card"><div class="cert-issuer">Tare Zameen Foundation</div><div class="cert-name">Data Analyst Internship Certificate</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
 <section id="contact">
-    <h2>Contact</h2>
-
-    <div class="card">
-        <p>Email: dhruvlohia2996@gmail.com</p>
-        <p>Phone: 9311592996</p>
-        <p>Location: Gurugram, Haryana</p>
-
-        <!-- IMPORTANT: yaha apne links daal -->
-        <a class="btn" href="#">LinkedIn</a>
-        <a class="btn" href="#">GitHub</a>
-    </div>
-
+  <div class="sec-label">// reach me at</div>
+  <div class="sec-title">Contact</div>
+  <div class="contact-grid">
+    <a class="contact-chip" href="mailto:dhruvlohia2996@gmail.com"><span class="icon">✉</span> dhruvlohia2996@gmail.com</a>
+    <a class="contact-chip" href="tel:9311592996"><span class="icon">☎</span> +91 93115 92996</a>
+    <a class="contact-chip" href="https://linkedin.com/in/dhruv-lohia" target="_blank"><span class="icon">in</span> LinkedIn</a>
+    <a class="contact-chip" href="https://github.com/dhruv-lohia" target="_blank"><span class="icon">⌥</span> GitHub</a>
+  </div>
 </section>
 
-<footer>
-    <p>© 2026 Dhruv | Portfolio</p>
-</footer>
+<footer>dhruv lohia · gurugram, haryana · dhruvlohia2996@gmail.com</footer>
 
 </body>
 </html>
